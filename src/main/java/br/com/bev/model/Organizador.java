@@ -19,7 +19,7 @@ import java.util.List;
 public class Organizador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @NotBlank(message = "Nome é Obrigatório")

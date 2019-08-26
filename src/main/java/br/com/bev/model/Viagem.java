@@ -20,7 +20,7 @@ import java.util.List;
 public class Viagem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @NotBlank(message = "Nome é Obrigatório")
