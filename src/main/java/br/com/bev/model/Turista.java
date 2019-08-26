@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,7 +34,11 @@ public class Turista {
     @NotBlank(message = "CPF é Obrigatório")
     private String cpf;
 
+    @NotBlank(message = "Foto é Obrigatória")
+    private String fotoPerfil;
+
     @ManyToMany
+    @Null
     private List<Viagem> viagens;
 
 }

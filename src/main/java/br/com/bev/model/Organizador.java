@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import java.util.List;
 
 @Getter
@@ -33,7 +34,11 @@ public class Organizador {
     @NotBlank(message = "Email é Obrigatório")
     private String email;
 
+    @NotBlank(message = "Foto é Obrigatória")
+    private String fotoPerfil;
+
     @ManyToMany
+    @Null
     private List<Viagem> viagens;
 
 }
