@@ -1,34 +1,51 @@
 package br.com.bev.model;
 
+import br.com.bev.repository.TuristaRepository;
+import br.com.bev.repository.ViagemRepository;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class Ingresso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomeViagem;
-    private String nomeOrganizador;
+
+    @OneToOne
+    private Turista turista;
+
+    @OneToOne
+    private Viagem viagem;
+
+    @OneToOne
+    private Organizador organizador;
+
     private String fotoViagem;
-    private LocalDateTime dataViagem;
+    private LocalDate dataViagem;
     private String qrCode;
 
-    public Ingresso(String nomeViagem, String nomeOrganizador, String fotoViagem, LocalDateTime dataViagem, String qrCode) {
-        this.nomeViagem = nomeViagem;
-        this.nomeOrganizador = nomeOrganizador;
+    public Ingresso(Turista turista, Viagem viagem, Organizador organizador, String fotoViagem, LocalDate dataViagem) {
+        this.turista = turista;
+        this.viagem = viagem;
+        this.organizador = organizador;
         this.fotoViagem = fotoViagem;
         this.dataViagem = dataViagem;
-        this.qrCode = qrCode;
+        this.qrCode = generateQrCode();
+    }
+
+    /**
+     * Gerando o QR Code com o CPF
+     * O código será utilizado no momento do embarque.
+     */
+    private String generateQrCode() {
+        return String.valueOf(this.getTurista().getCpf() + this.getViagem().getId() + this.getOrganizador().getCpf()).toString();
     }
 }

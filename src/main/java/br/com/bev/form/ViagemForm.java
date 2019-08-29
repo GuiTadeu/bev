@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 @Setter
 public class ViagemForm {
 
+    private Long id;
     private String nome;
     private String descricao;
     private String fotoDestaque;
@@ -23,6 +24,7 @@ public class ViagemForm {
     private Integer qtdVagas;
 
     public ViagemForm(Viagem viagem) {
+        this.id = viagem.getId();
         this.nome = viagem.getNome();
         this.descricao = viagem.getDescricao();
         this.fotoDestaque = viagem.getFotoDestaque();

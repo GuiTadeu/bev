@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,8 @@ public class ViagemCadastroForm {
     private BigDecimal preco;
     private Integer qtdVagas;
     private ArrayList<String> pontosEmbarques;
-    private LocalDateTime dataHoraSaida;
-    private LocalDateTime dataHoraChegada;
+    private LocalDate dataSaida;
+    private LocalDate dataChegada;
 
     /**
      * Criado para evitar ter que passar um organizador cheio no
@@ -41,6 +42,6 @@ public class ViagemCadastroForm {
      * */
     public Viagem toViagem(OrganizadorRepository organizadorRepository){
         Organizador organizador = organizadorRepository.findById(idOrganizador).get();
-        return new Viagem(nome, organizador, descricao, fotoDestaque, preco, qtdVagas, pontosEmbarques, dataHoraSaida, dataHoraChegada);
+        return new Viagem(nome, organizador, descricao, fotoDestaque, preco, qtdVagas, pontosEmbarques, dataSaida, dataChegada);
     }
 }

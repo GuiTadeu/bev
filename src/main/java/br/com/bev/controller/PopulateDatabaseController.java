@@ -33,7 +33,7 @@ public class PopulateDatabaseController {
 
     @GetMapping
     public String populate(){
-        Organizador organizador = new Organizador("Jubileu", "697.862.540-07", "jubileu@gmail.com", "HTPP");
+        Organizador organizador = new Organizador("Jubileu", "69786254007", "jubileu@gmail.com", "HTPP");
         Turista turista = new Turista("Guilherme", "guilherme@gmail.com", "89480007053", "HTTP");
         Turista turista2 = new Turista("Jubileu", "jubi@gmail.com", "89393384053", "HTTP");
         Turista turista3 = new Turista("Pitagoras", "pitagoras@gmail.com", "06885390097", "HTTP");
@@ -48,8 +48,8 @@ public class PopulateDatabaseController {
         turistas.add(turista3);
 
 
-        Viagem viagem = new Viagem("Campos do Jordão", organizador, "TOP DEMAIS", "HTTP", new BigDecimal(200), 20, embarque, LocalDateTime.now(), LocalDateTime.now());
-        Viagem viagem2 = new Viagem("Paraty", organizador, "MUITO LINDO", "HTTP", new BigDecimal(200), 20, embarque, LocalDateTime.now(), LocalDateTime.now());
+        Viagem viagem = new Viagem("Campos do Jordão", organizador, "TOP DEMAIS", "HTTP", new BigDecimal(200), 20, embarque, LocalDate.now(), LocalDate.now());
+        Viagem viagem2 = new Viagem("Paraty", organizador, "MUITO LINDO", "HTTP", new BigDecimal(200), 20, embarque, LocalDate.now(), LocalDate.now());
 
         organizadorRepository.save(organizador);
         turistaRepository.save(turista);

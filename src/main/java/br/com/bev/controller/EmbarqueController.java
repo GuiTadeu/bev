@@ -1,9 +1,11 @@
 package br.com.bev.controller;
 
 import br.com.bev.model.Embarque;
+import br.com.bev.model.Ingresso;
 import br.com.bev.model.Turista;
 import br.com.bev.model.Viagem;
 import br.com.bev.repository.EmbarqueRepository;
+import br.com.bev.repository.IngressoRepository;
 import br.com.bev.repository.TuristaRepository;
 import br.com.bev.repository.ViagemRepository;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -29,13 +31,25 @@ public class EmbarqueController {
     @Autowired
     ViagemRepository viagemRepository;
 
+    @Autowired
+    IngressoRepository ingressoRepository;
+
     @PostMapping("viagem/{idViagem}/turista/{idTurista}")
     public ResponseEntity<Embarque> embarcarTurista(@PathVariable Long idViagem, @PathVariable Long idTurista){
         Optional<Viagem> viagemOptional = viagemRepository.findById(idViagem);
         Optional<Turista> turistaOptional = turistaRepository.findById(idTurista);
         if(viagemOptional.isPresent() && turistaOptional.isPresent()){
-            Embarque embarque = new Embarque(turistaOptional.get().getId(), viagemOptional.get().getId());
+            Turista turista = turistaOptional.get();
+            Viagem viagem = viagemOptional.get();
+
+            // Gerando o Ingresso do Turista
+            Ingresso ingresso = new Ingresso(turista, viagem, viagem.getOrganizador(), viagem.getFotoDestaque(), viagem.getDataSaida());
+            ingressoRepository.save(ingresso);
+
+            // Embarcando o Turista na viagem
+            Embarque embarque = new Embarque(turista.getId(), viagem.getId());
             embarqueRepository.save(embarque);
+
             return ResponseEntity.ok(embarque);
         }
         return ResponseEntity.notFound().build();

@@ -48,10 +48,10 @@ public class ViagemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ViagemForm> findById(@PathVariable Long id) {
+    public ResponseEntity<ViagemDetalheForm> findById(@PathVariable Long id) {
         Optional<Viagem> viagemOptional = viagemRepository.findById(id);
         if (viagemOptional.isPresent()) {
-            return ResponseEntity.ok(new ViagemForm(viagemOptional.get()));
+            return ResponseEntity.ok(new ViagemDetalheForm(viagemOptional.get()));
         }
         return ResponseEntity.notFound().build();
     }

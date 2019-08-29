@@ -3,10 +3,8 @@ package br.com.bev.model;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Example;
 import io.swagger.annotations.ExampleProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.http.MediaType;
 
 import javax.persistence.*;
@@ -16,6 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,17 +44,18 @@ public class Viagem {
     @NotNull(message = "Preço é Obrigatório")
     private Integer qtdVagas;
 
-    @NotNull(message = "Data e Hora de Saída é Obrigatória")
-    private LocalDateTime dataHoraSaida;
+    @NotNull(message = "Data de Saída é Obrigatória")
+    private LocalDate dataSaida;
 
     @NotNull(message = "Data de Chegada é Obrigatória")
-    private LocalDateTime dataHoraChegada;
+    private LocalDate dataChegada;
 
     @NotNull(message = "Pontos de Embarque são Obrigatórios")
-    private ArrayList<String> pontosEmbarques;
+    @ElementCollection
+    private List<String> pontosEmbarques = new ArrayList<String>();
 
-    @NotNull(message = "Organizador é Obrigatório")
     @ManyToOne
+    @NotNull(message = "Organizador é Obrigatório")
     private Organizador organizador;
 
     @ManyToMany
@@ -73,7 +73,7 @@ public class Viagem {
     }
 
 
-    public Viagem(String nome, Organizador organizador, String descricao, String fotoDestaque, BigDecimal preco, Integer qtdVagas, ArrayList<String> pontosEmbarques, LocalDateTime dataHoraSaida, LocalDateTime dataHoraChegada) {
+    public Viagem(String nome, Organizador organizador, String descricao, String fotoDestaque, BigDecimal preco, Integer qtdVagas, ArrayList<String> pontosEmbarques, LocalDate dataSaida, LocalDate dataChegada) {
         this.nome = nome;
         this.organizador = organizador;
         this.descricao = descricao;
@@ -81,7 +81,7 @@ public class Viagem {
         this.preco = preco;
         this.qtdVagas = qtdVagas;
         this.pontosEmbarques = pontosEmbarques;
-        this.dataHoraSaida = dataHoraSaida;
-        this.dataHoraChegada = dataHoraChegada;
+        this.dataSaida = dataSaida;
+        this.dataChegada = dataChegada;
     }
 }
