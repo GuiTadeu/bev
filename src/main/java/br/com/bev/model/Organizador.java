@@ -15,30 +15,16 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class Organizador {
+public class Organizador extends Usuario{
 
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @NotBlank(message = "Nome é Obrigatório")
-    private String nome;
-
-    @CPF
-    @NotBlank(message = "CPF é Obrigatório")
-    private String cpf;
-
-    @Email
-    @NotBlank(message = "Email é Obrigatório")
-    private String email;
-
-    @NotBlank(message = "Foto é Obrigatória")
-    private String fotoPerfil;
-
-    @ManyToMany
-    @Null
+    @OneToMany(mappedBy = "organizador", cascade=CascadeType.ALL)
     private List<Viagem> viagens;
 
+    public Organizador(String nome, String cpf, String email, String fotoPerfil) {
+        setNome(nome);
+        setCpf(cpf);
+        setEmail(email);
+        setFotoPerfil(fotoPerfil);
+    }
 }

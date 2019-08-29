@@ -1,7 +1,10 @@
 package br.com.bev.controller;
 
+import br.com.bev.form.TuristaForm;
 import br.com.bev.model.Turista;
+import br.com.bev.model.Viagem;
 import br.com.bev.repository.TuristaRepository;
+import br.com.bev.repository.ViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,35 +24,11 @@ public class TuristaController {
     TuristaRepository turistaRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<Turista> create(@Valid @RequestBody Turista turista, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<Turista> create(@Valid @RequestBody TuristaForm form, UriComponentsBuilder uriBuilder){
+        Turista turista = form.toTurista();
         turistaRepository.save(turista);
         URI uri = uriBuilder.path("/turistas/{id}").buildAndExpand(turista.getId()).toUri();
         return ResponseEntity.created(uri).body(turista);
     }
 
-    @GetMapping("/retrieve")
-    public List<Turista> retrieve(){
-        return turistaRepository.findAll();
-    }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Turista> update(@Valid @RequestBody Turista turista, @PathVariable Long id){
-        Optional<Turista> turistaOptional = turistaRepository.findById(id);
-        if(turistaOptional.isPresent()){
-            turista.setId(id);
-            turistaRepository.save(turista);
-            return ResponseEntity.ok(turista);
-        }
-        return ResponseEntity.notFound().build();
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        Optional<Turista> turistaOptional = turistaRepository.findById(id);
-        if(turistaOptional.isPresent()){
-            turistaRepository.deleteById(id);
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
 }
