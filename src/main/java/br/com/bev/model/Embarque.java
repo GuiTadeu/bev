@@ -20,7 +20,8 @@ import javax.persistence.*;
 public class Embarque {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMBARQUE_GEN_ID")
+    @SequenceGenerator(name = "EMBARQUE_GEN_ID", sequenceName = "EMBARQUE_ID_SEQ")
     private Long id;
     private Long turista;
     private Long viagem;

@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 public class Organizador extends Usuario{
 
-    @OneToMany(mappedBy = "organizador", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "organizador", cascade = CascadeType.ALL)
     private List<Viagem> viagens;
 
     public Organizador(String nome, String cpf, String email, String fotoPerfil) {

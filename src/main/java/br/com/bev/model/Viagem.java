@@ -26,7 +26,8 @@ import java.util.List;
 public class Viagem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIAGEM_GEN_ID")
+    @SequenceGenerator(name = "VIAGEM_GEN_ID", sequenceName = "VIAGEM_ID_SEQ")
     private Long id;
 
     @NotBlank(message = "Nome é Obrigatório")
