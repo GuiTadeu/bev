@@ -16,8 +16,7 @@ import java.time.LocalDate;
 public class Ingresso {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INGRESSO_GEN_ID")
-    @SequenceGenerator(name = "INGRESSO_GEN_ID", sequenceName = "INGRESSO_ID_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
