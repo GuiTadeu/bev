@@ -39,6 +39,15 @@ public class TuristaController {
         return ResponseEntity.created(uri).body(turista);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<TuristaForm> findById(@PathVariable Long id) {
+        Optional<Turista> turistaOptional = turistaRepository.findById(id);
+        if (turistaOptional.isPresent()) {
+            return ResponseEntity.ok(new TuristaForm(turistaOptional.get()));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("{id}/ingressos")
     public ResponseEntity<List<IngressoForm>> ingressos(@PathVariable Long id){
         Optional<Turista> turistaOptional = turistaRepository.findById(id);
@@ -50,4 +59,6 @@ public class TuristaController {
         }
         return ResponseEntity.notFound().build();
     }
+
+
 }
