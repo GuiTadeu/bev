@@ -30,6 +30,15 @@ public class OrganizadorController {
         return ResponseEntity.created(uri).body(organizador);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<OrganizadorForm> findById(@PathVariable Long id) {
+        Optional<Organizador> turistaOptional = organizadorRepository.findById(id);
+        if (turistaOptional.isPresent()) {
+            return ResponseEntity.ok(new OrganizadorForm(turistaOptional.get()));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("{id}/viagens")
     public ResponseEntity<List<ViagemForm>> listaDeViagens(@PathVariable Long id){
         Optional<Organizador> organizadorOptional = organizadorRepository.findById(id);
