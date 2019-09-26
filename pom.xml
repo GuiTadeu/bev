@@ -103,7 +103,7 @@
             <id>prod</id>
             <properties>
                 <springProfile>prod</springProfile>
-                <baseDir>batevolta-api.herokuapp.com</baseDir>
+                <baseDir>https://batevolta-api.herokuapp.com</baseDir>
             </properties>
 			<dependencies>
 				<dependency>
