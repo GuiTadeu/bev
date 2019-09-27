@@ -1,6 +1,7 @@
 package br.com.bev.controller;
 
 import br.com.bev.form.IngressoForm;
+import br.com.bev.form.TuristaCadastroForm;
 import br.com.bev.form.TuristaForm;
 import br.com.bev.model.Ingresso;
 import br.com.bev.model.Organizador;
@@ -32,11 +33,11 @@ public class TuristaController {
     IngressoRepository ingressoRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<Turista> create(@Valid @RequestBody TuristaForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<TuristaForm> create(@Valid @RequestBody TuristaCadastroForm form, UriComponentsBuilder uriBuilder){
         Turista turista = form.toTurista();
         turistaRepository.save(turista);
         URI uri = uriBuilder.path("/turistas/{id}").buildAndExpand(turista.getId()).toUri();
-        return ResponseEntity.created(uri).body(turista);
+        return ResponseEntity.created(uri).body(new TuristaForm(turista));
     }
 
     @GetMapping("/{id}")

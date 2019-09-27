@@ -72,7 +72,6 @@ public class Viagem {
         this.qtdVagas = qtdVagas;
     }
 
-
     public Viagem(String nome, Organizador organizador, String descricao, String fotoDestaque, BigDecimal preco, Integer qtdVagas, ArrayList<String> pontosEmbarques, LocalDate dataSaida, LocalDate dataChegada) {
         this.nome = nome;
         this.organizador = organizador;

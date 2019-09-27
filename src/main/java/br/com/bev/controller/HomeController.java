@@ -25,8 +25,6 @@ import java.util.List;
 @ApiIgnore
 public class HomeController {
 
-    @Autowired
-
     @RequestMapping("/")
     public String index() {
         return "redirect:/swagger-ui.html";

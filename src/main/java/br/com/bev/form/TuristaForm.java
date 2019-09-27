@@ -25,7 +25,6 @@ public class TuristaForm {
     private String cpf;
     private String fotoPerfil;
 
-
     public TuristaForm(Turista turista) {
         this.nome = turista.getNome();
         this.email = turista.getEmail();

@@ -1,5 +1,6 @@
 package br.com.bev.controller;
 
+import br.com.bev.form.OrganizadorCadastroForm;
 import br.com.bev.form.OrganizadorForm;
 import br.com.bev.form.ViagemForm;
 import br.com.bev.model.Organizador;
@@ -23,11 +24,11 @@ public class OrganizadorController {
     OrganizadorRepository organizadorRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<Organizador> create(@Valid @RequestBody OrganizadorForm form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<OrganizadorForm> create(@Valid @RequestBody OrganizadorCadastroForm form, UriComponentsBuilder uriBuilder){
         Organizador organizador = form.toOrganizador();
         organizadorRepository.save(organizador);
         URI uri = uriBuilder.path("/organizador/{id}").buildAndExpand(organizador.getId()).toUri();
-        return ResponseEntity.created(uri).body(organizador);
+        return ResponseEntity.created(uri).body(new OrganizadorForm(organizador));
     }
 
     @GetMapping("/{id}")
