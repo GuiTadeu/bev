@@ -35,8 +35,6 @@ public class OrganizadorCadastroForm {
     }
 
     public Organizador toOrganizador(){
-        List<Role> authorities = new ArrayList<>();
-        authorities.add(Role.ROLE_ORGANIZADOR);
-        return new Organizador(nome, cpf, email, senha, fotoPerfil, authorities);
+        return new Organizador(nome, cpf, email, senha, fotoPerfil);
     }
 }

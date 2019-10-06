@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +40,13 @@ public class Usuario implements UserDetails {
     private String fotoPerfil;
 
     @ManyToMany
-    private List<Role> authorities = new ArrayList<>();
+    @JoinTable(name = "USUARIOS_ROLES", joinColumns = @JoinColumn(
+            name = "ID_USUARIO", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "ROLE", referencedColumnName = "AUTHORITY"
+            )
+    )
+    private List<Role> roles;
 
 
     public Usuario() {
@@ -53,10 +58,9 @@ public class Usuario implements UserDetails {
         this.senha = senha;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.authorities;
+        return this.roles;
     }
 
     @Override

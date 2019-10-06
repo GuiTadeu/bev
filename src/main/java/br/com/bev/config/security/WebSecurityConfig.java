@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -19,10 +20,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/populate/").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/populate/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and().formLogin();
+                .and().formLogin().permitAll()
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 
         http.csrf().disable();
         http.headers().frameOptions().disable();

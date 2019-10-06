@@ -1,18 +1,24 @@
 package br.com.bev.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class Role implements GrantedAuthority {
 
-    public static final Role ROLE_ORGANIZADOR = new Role("ORGANIZADOR");
-    public static final Role ROLE_TURISTA = new Role("TURISTA");
-
     @Id
+    @Getter
+    @Setter
     private String authority;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<Usuario> usuarios;
 
     public Role() {
     }

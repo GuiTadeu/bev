@@ -35,8 +35,6 @@ public class TuristaCadastroForm {
     }
 
     public Turista toTurista(){
-        List<Role> authorities = new ArrayList<>();
-        authorities.add(Role.ROLE_TURISTA);
-        return new Turista(nome, email, senha, cpf, fotoPerfil, authorities);
+        return new Turista(nome, email, senha, cpf, fotoPerfil);
     }
 }
