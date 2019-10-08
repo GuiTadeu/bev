@@ -5,6 +5,7 @@ import br.com.bev.model.Turista;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class TuristaCadastroForm {
     public TuristaCadastroForm(Turista turista){
         this.nome = turista.getNome();
         this.email = turista.getEmail();
-        this.senha = turista.getSenha();
+        this.senha = new BCryptPasswordEncoder().encode(turista.getSenha());
         this.cpf = turista.getCpf();
         this.fotoPerfil = turista.getFotoPerfil();
     }

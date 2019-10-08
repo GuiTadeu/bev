@@ -4,19 +4,15 @@ import br.com.bev.form.IngressoForm;
 import br.com.bev.form.TuristaCadastroForm;
 import br.com.bev.form.TuristaForm;
 import br.com.bev.model.Ingresso;
-import br.com.bev.model.Organizador;
 import br.com.bev.model.Turista;
-import br.com.bev.model.Viagem;
 import br.com.bev.repository.IngressoRepository;
 import br.com.bev.repository.TuristaRepository;
-import br.com.bev.repository.ViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import javax.xml.ws.Response;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +28,7 @@ public class TuristaController {
     @Autowired
     IngressoRepository ingressoRepository;
 
-    @PostMapping("/create")
+    @PostMapping("/cadastrar")
     public ResponseEntity<TuristaForm> create(@Valid @RequestBody TuristaCadastroForm form, UriComponentsBuilder uriBuilder){
         Turista turista = form.toTurista();
         turistaRepository.save(turista);
@@ -60,6 +56,4 @@ public class TuristaController {
         }
         return ResponseEntity.notFound().build();
     }
-
-
 }

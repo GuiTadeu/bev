@@ -23,7 +23,7 @@ public class OrganizadorController {
     @Autowired
     OrganizadorRepository organizadorRepository;
 
-    @PostMapping("/create")
+    @PostMapping("/cadastrar")
     public ResponseEntity<OrganizadorForm> create(@Valid @RequestBody OrganizadorCadastroForm form, UriComponentsBuilder uriBuilder){
         Organizador organizador = form.toOrganizador();
         organizadorRepository.save(organizador);

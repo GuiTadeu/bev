@@ -2,16 +2,16 @@ package br.com.bev.controller;
 
 import br.com.bev.model.Organizador;
 import br.com.bev.model.Turista;
-import br.com.bev.model.Usuario;
 import br.com.bev.model.Viagem;
 import br.com.bev.repository.OrganizadorRepository;
 import br.com.bev.repository.TuristaRepository;
-import br.com.bev.repository.UsuarioRepository;
 import br.com.bev.repository.ViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 @ApiIgnore
-@Controller
+@RestController
 @RequestMapping("/populate")
 public class PopulateDatabaseController {
 
@@ -33,6 +33,7 @@ public class PopulateDatabaseController {
     ViagemRepository viagemRepository;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public String populate(){
         Organizador organizador = new Organizador("Graça", "46598997054", "graca@gmail.com", "$2a$10$ZZ09PypLo3AUWHr6iH8OuOJSP921c5HTUDv4vbT2PbePsKlDM2lQ2", "HTPP");
         Turista turista = new Turista("Guilherme", "guilherme@gmail.com", "$2a$10$ZZ09PypLo3AUWHr6iH8OuOJSP921c5HTUDv4vbT2PbePsKlDM2lQ2", "23384647025", "HTTP");

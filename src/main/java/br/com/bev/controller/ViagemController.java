@@ -5,9 +5,7 @@ import br.com.bev.form.ViagemCadastroForm;
 import br.com.bev.form.ViagemDetalheForm;
 import br.com.bev.form.ViagemForm;
 import br.com.bev.model.Viagem;
-import br.com.bev.repository.EmbarqueRepository;
 import br.com.bev.repository.OrganizadorRepository;
-import br.com.bev.repository.TuristaRepository;
 import br.com.bev.repository.ViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import javax.xml.ws.Response;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;

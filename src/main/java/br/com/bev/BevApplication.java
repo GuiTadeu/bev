@@ -10,6 +10,5 @@ public class BevApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BevApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("123456"));
 	}
 }
