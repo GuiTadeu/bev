@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 
+/**
+ * Classe responsavel por interceptar requisições do
+ * tipo POST em /login e tentar autenticar o usuário
+ * */
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     protected JWTLoginFilter(String url, AuthenticationManager authManager) {
@@ -23,6 +27,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
         setAuthenticationManager(authManager);
     }
 
+    // Tentativa de autenticação
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
@@ -34,11 +39,13 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
                 new UsernamePasswordAuthenticationToken(
                         usuario.getUsername(),
                         usuario.getPassword(),
-                        Collections.emptyList()
+                        usuario.getAuthorities()
                 )
         );
     }
 
+    // Sucesso na autenticação, pede a geração do token para o
+    // TokenAuthenticationService
     @Override
     protected void successfulAuthentication(
             HttpServletRequest request,
@@ -46,6 +53,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             FilterChain filterChain,
             Authentication auth) throws IOException, ServletException {
 
-        TokenAuthenticationService.addAuthentication(response, auth.getName());
+        TokenAuthenticationService.addAuthentication(response, auth.getName(), auth.getAuthorities());
     }
 }

@@ -11,6 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * Classe responsavel por validar a existencia
+ * de um JWT na requisicao
+ * @see TokenAuthenticationService
+ * */
 public class JWTAuthenticationFilter extends GenericFilterBean {
 
     @Override
@@ -23,5 +28,4 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
-
 }
