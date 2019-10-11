@@ -14,7 +14,7 @@ import java.util.List;
 @DiscriminatorValue("TURISTA")
 public class Turista extends Usuario {
 
-    @ManyToMany(mappedBy = "turistas")
+    @ManyToMany(mappedBy = "turistas", cascade = CascadeType.ALL)
     private List<Viagem> viagens;
 
     public Turista(String nome, String email, String senha, String cpf, String fotoPerfil) {

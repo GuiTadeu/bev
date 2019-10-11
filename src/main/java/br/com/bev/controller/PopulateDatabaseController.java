@@ -1,17 +1,10 @@
 package br.com.bev.controller;
 
-import br.com.bev.model.Organizador;
-import br.com.bev.model.Turista;
-import br.com.bev.model.Viagem;
-import br.com.bev.repository.OrganizadorRepository;
-import br.com.bev.repository.TuristaRepository;
-import br.com.bev.repository.ViagemRepository;
+import br.com.bev.model.*;
+import br.com.bev.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.math.BigDecimal;

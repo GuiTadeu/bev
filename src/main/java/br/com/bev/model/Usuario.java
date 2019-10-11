@@ -39,7 +39,7 @@ public class Usuario implements UserDetails {
     @NotBlank(message = "Foto é Obrigatória")
     private String fotoPerfil;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USUARIOS_ROLES", joinColumns = @JoinColumn(
             name = "ID_USUARIO", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(

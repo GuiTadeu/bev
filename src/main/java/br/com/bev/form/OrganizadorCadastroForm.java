@@ -27,15 +27,7 @@ public class OrganizadorCadastroForm {
     private String senha;
     private String fotoPerfil;
 
-    public OrganizadorCadastroForm(Organizador organizador){
-        this.nome = organizador.getNome();
-        this.cpf = organizador.getCpf();
-        this.email = organizador.getEmail();
-        this.senha = new BCryptPasswordEncoder().encode(organizador.getSenha());
-        this.fotoPerfil = organizador.getFotoPerfil();
-    }
-
     public Organizador toOrganizador(){
-        return new Organizador(nome, cpf, email, senha, fotoPerfil);
+        return new Organizador(nome, cpf, email, new BCryptPasswordEncoder().encode(senha), fotoPerfil);
     }
 }

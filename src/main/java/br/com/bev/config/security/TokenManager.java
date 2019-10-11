@@ -17,7 +17,7 @@ public class TokenManager {
     @Value("${bev.jwt.expiration}")
     private Long expirationInMillis;
 
-    public String generateToken(Authentication authentication){
+    public String generateToken(Authentication authentication) {
 
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
@@ -34,4 +34,18 @@ public class TokenManager {
                 .compact();
     }
 
+    public boolean isValid(String jwt) {
+        try {
+            Jwts.parser().setSigningKey(this.secret).parseClaimsJws(jwt);
+            return true;
+        } catch (JwtException | IllegalArgumentException exception) {
+            return false;
+        }
+    }
+
+    public Long getUserIdFromToken(String jwt) {
+        Claims claims = Jwts.parser().setSigningKey(this.secret)
+                .parseClaimsJws(jwt).getBody();
+        return Long.parseLong(claims.getSubject());
+    }
 }

@@ -23,16 +23,11 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationTokenOutputDTO> authenticate(@RequestBody LoginInputDTO login){
 
         UsernamePasswordAuthenticationToken authenticationToken = login.build();
-        try {
-            Authentication authentication = authenticationManager.authenticate(authenticationToken);
-            String jwt = tokenManager.generateToken(authentication);
-            AuthenticationTokenOutputDTO tokenResponse = new AuthenticationTokenOutputDTO("Bearer", jwt);
 
-            return ResponseEntity.ok(tokenResponse);
+        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+        String jwt = tokenManager.generateToken(authentication);
+        AuthenticationTokenOutputDTO tokenResponse = new AuthenticationTokenOutputDTO("Bearer", jwt);
 
-        } catch (AuthenticationException exception){
-
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.ok(tokenResponse);
     }
 }
