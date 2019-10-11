@@ -20,7 +20,6 @@ import java.util.Collections;
  */
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
     /**
      * Método criado para especificar o pacote de controllers
