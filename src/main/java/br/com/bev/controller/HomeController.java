@@ -14,7 +14,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @ApiIgnore
 @Controller
-@RequestMapping("/swagger")
+@RequestMapping("/")
 public class HomeController {
 
     @GetMapping
