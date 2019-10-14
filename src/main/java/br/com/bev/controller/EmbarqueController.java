@@ -1,5 +1,6 @@
 package br.com.bev.controller;
 
+import br.com.bev.config.security.annotations.AllowTurista;
 import br.com.bev.model.Embarque;
 import br.com.bev.model.Ingresso;
 import br.com.bev.model.Turista;
@@ -34,6 +35,7 @@ public class EmbarqueController {
     @Autowired
     IngressoRepository ingressoRepository;
 
+    @AllowTurista
     @PostMapping("viagem/{idViagem}/turista/{idTurista}")
     public ResponseEntity<Embarque> embarcarTurista(@PathVariable Long idViagem, @PathVariable Long idTurista){
         Optional<Viagem> viagemOptional = viagemRepository.findById(idViagem);
@@ -42,11 +44,9 @@ public class EmbarqueController {
             Turista turista = turistaOptional.get();
             Viagem viagem = viagemOptional.get();
 
-            // Gerando o Ingresso do Turista
             Ingresso ingresso = new Ingresso(turista, viagem, viagem.getOrganizador(), viagem.getFotoDestaque(), viagem.getDataSaida());
             ingressoRepository.save(ingresso);
 
-            // Embarcando o Turista na viagem
             Embarque embarque = new Embarque(turista.getId(), viagem.getId());
             embarqueRepository.save(embarque);
 

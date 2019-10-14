@@ -1,10 +1,7 @@
 package br.com.bev.controller;
 
-import br.com.bev.form.OrganizadorCadastroForm;
-import br.com.bev.form.OrganizadorForm;
-import br.com.bev.form.ViagemForm;
+import br.com.bev.form.*;
 import br.com.bev.model.Organizador;
-import br.com.bev.model.Viagem;
 import br.com.bev.repository.OrganizadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +10,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/organizador")
 public class OrganizadorController {
+
     @Autowired
     OrganizadorRepository organizadorRepository;
 

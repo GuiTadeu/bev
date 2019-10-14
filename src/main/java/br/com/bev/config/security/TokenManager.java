@@ -3,10 +3,11 @@ package br.com.bev.config.security;
 import br.com.bev.model.Usuario;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Component
 public class TokenManager {
@@ -17,6 +18,8 @@ public class TokenManager {
     @Value("${bev.jwt.expiration}")
     private Long expirationInMillis;
 
+    public static final String AUTHORITIES_KEY = "scopes";
+
     public String generateToken(Authentication authentication) {
 
         Usuario usuario = (Usuario) authentication.getPrincipal();
@@ -24,10 +27,14 @@ public class TokenManager {
         final Date now = new Date();
         final Date expiration = new Date(now.getTime() +
                 this.expirationInMillis);
+        final String authorities = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
 
         return Jwts.builder()
                 .setIssuer("Bate & Volta API")
                 .setSubject(Long.toString(usuario.getId()))
+                .claim(AUTHORITIES_KEY, authorities)
                 .setIssuedAt(now)
                 .setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS256, this.secret)

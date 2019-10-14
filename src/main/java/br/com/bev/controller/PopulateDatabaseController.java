@@ -1,9 +1,9 @@
 package br.com.bev.controller;
 
+import br.com.bev.config.security.annotations.AllowAdmin;
 import br.com.bev.model.*;
 import br.com.bev.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -25,8 +25,8 @@ public class PopulateDatabaseController {
     @Autowired
     ViagemRepository viagemRepository;
 
+    @AllowAdmin
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public String populate(){
         Organizador organizador = new Organizador("Graça", "46598997054", "graca@gmail.com", "$2a$10$ZZ09PypLo3AUWHr6iH8OuOJSP921c5HTUDv4vbT2PbePsKlDM2lQ2", "HTPP");
         Turista turista = new Turista("Guilherme", "guilherme@gmail.com", "$2a$10$ZZ09PypLo3AUWHr6iH8OuOJSP921c5HTUDv4vbT2PbePsKlDM2lQ2", "23384647025", "HTTP");

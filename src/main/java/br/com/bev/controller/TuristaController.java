@@ -1,5 +1,6 @@
 package br.com.bev.controller;
 
+import br.com.bev.config.security.annotations.AllowTurista;
 import br.com.bev.form.IngressoForm;
 import br.com.bev.form.TuristaCadastroForm;
 import br.com.bev.form.TuristaForm;
@@ -45,6 +46,7 @@ public class TuristaController {
         return ResponseEntity.notFound().build();
     }
 
+    @AllowTurista
     @GetMapping("{id}/ingressos")
     public ResponseEntity<List<IngressoForm>> ingressos(@PathVariable Long id){
         Optional<Turista> turistaOptional = turistaRepository.findById(id);

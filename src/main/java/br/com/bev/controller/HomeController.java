@@ -1,5 +1,6 @@
 package br.com.bev.controller;
 
+import br.com.bev.config.security.annotations.AllowAdmin;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;

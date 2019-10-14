@@ -1,5 +1,6 @@
 package br.com.bev.controller;
 
+import br.com.bev.config.security.annotations.AllowOrganizador;
 import br.com.bev.form.TuristaForm;
 import br.com.bev.form.ViagemCadastroForm;
 import br.com.bev.form.ViagemDetalheForm;
@@ -29,6 +30,7 @@ public class ViagemController {
     private OrganizadorRepository organizadorRepository;
 
 
+    @AllowOrganizador
     @PostMapping("/create")
     public ResponseEntity<ViagemDetalheForm> create(@Valid @RequestBody ViagemCadastroForm form, UriComponentsBuilder uriBuilder) {
         Viagem viagem = form.toViagem(organizadorRepository);
@@ -53,6 +55,7 @@ public class ViagemController {
         return ResponseEntity.notFound().build();
     }
 
+    @AllowOrganizador
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Viagem> delete(@PathVariable Long id) {
         Optional<Viagem> viagemOptional = viagemRepository.findById(id);
@@ -63,6 +66,7 @@ public class ViagemController {
         return ResponseEntity.notFound().build();
     }
 
+    @AllowOrganizador
     @GetMapping("{idViagem}/turistas")
     public ResponseEntity<List<TuristaForm>> listaDeTuristasNaViagem(@PathVariable Long idViagem) {
         Optional<Viagem> viagemOptional = viagemRepository.findById(idViagem);
