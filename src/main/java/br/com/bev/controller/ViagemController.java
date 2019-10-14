@@ -31,7 +31,7 @@ public class ViagemController {
 
 
     @AllowOrganizador
-    @PostMapping("/create")
+    @PostMapping("/cadastrar")
     public ResponseEntity<ViagemDetalheForm> create(@Valid @RequestBody ViagemCadastroForm form, UriComponentsBuilder uriBuilder) {
         Viagem viagem = form.toViagem(organizadorRepository);
         viagemRepository.save(viagem);
