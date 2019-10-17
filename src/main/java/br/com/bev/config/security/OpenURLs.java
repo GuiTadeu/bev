@@ -19,7 +19,7 @@ public class OpenURLs {
             "/viagem/{*}",
 
             "/token/getUser",
-
             "/h2-console/*",
+            "/role/create"
     };
 }
