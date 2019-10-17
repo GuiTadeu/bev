@@ -16,6 +16,8 @@ public class OpenURLs {
 
             "/viagem/cadastrar",
             "/viagem/retrieve",
-            "/viagem/{*}"
+            "/viagem/{*}",
+
+            "/token/toUser"
     };
 }
