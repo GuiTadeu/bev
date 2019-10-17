@@ -18,7 +18,7 @@ public class OpenURLs {
             "/viagem/retrieve",
             "/viagem/{*}",
 
-            "/token/toUser",
+            "/token/getUser",
 
             "/h2-console/*"
     };
