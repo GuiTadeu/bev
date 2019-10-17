@@ -18,6 +18,8 @@ public class OpenURLs {
             "/viagem/retrieve",
             "/viagem/{*}",
 
-            "/token/toUser"
+            "/token/toUser",
+
+            "/h2-console/*"
     };
 }

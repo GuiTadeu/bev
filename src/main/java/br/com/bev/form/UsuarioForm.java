@@ -23,6 +23,6 @@ public class UsuarioForm {
         this.nome = usuario.getNome();
         this.email = usuario.getEmail();
         this.fotoPerfil = usuario.getFotoPerfil();
-        this.role = usuario.getRoles().get(0);
+        this.role = usuario.getRole();
     }
 }

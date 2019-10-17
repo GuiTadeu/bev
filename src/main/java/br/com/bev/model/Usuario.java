@@ -9,9 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -39,14 +37,8 @@ public class Usuario implements UserDetails {
     @NotBlank(message = "Foto é Obrigatória")
     private String fotoPerfil;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "USUARIOS_ROLES", joinColumns = @JoinColumn(
-            name = "ID_USUARIO", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "ROLE", referencedColumnName = "AUTHORITY"
-            )
-    )
-    private List<Role> roles;
+    @ManyToOne
+    private Role role;
 
 
     public Usuario() {
@@ -60,7 +52,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
+        return Arrays.asList(this.role);
     }
 
     @Override
