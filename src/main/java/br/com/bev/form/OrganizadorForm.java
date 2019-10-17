@@ -22,8 +22,4 @@ public class OrganizadorForm {
         this.email = organizador.getEmail();
         this.fotoPerfil = organizador.getFotoPerfil();
     }
-
-    public Organizador toOrganizador(){
-        return new Organizador(nome, cpf, email, fotoPerfil);
-    }
 }

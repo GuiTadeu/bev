@@ -1,5 +1,6 @@
 package br.com.bev.form;
 
+import br.com.bev.model.Role;
 import br.com.bev.model.Turista;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +23,6 @@ public class TuristaCadastroForm {
     private String fotoPerfil;
 
     public Turista toTurista(){
-        return new Turista(nome, email, new BCryptPasswordEncoder().encode(senha), cpf, fotoPerfil);
+        return new Turista(nome, email, new BCryptPasswordEncoder().encode(senha), cpf, fotoPerfil, Role.ROLE_TURISTA);
     }
 }

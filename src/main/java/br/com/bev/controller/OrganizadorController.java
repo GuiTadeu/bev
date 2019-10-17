@@ -2,6 +2,7 @@ package br.com.bev.controller;
 
 import br.com.bev.form.*;
 import br.com.bev.model.Organizador;
+import br.com.bev.model.Role;
 import br.com.bev.repository.OrganizadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

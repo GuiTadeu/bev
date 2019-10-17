@@ -5,6 +5,7 @@ import br.com.bev.form.IngressoForm;
 import br.com.bev.form.TuristaCadastroForm;
 import br.com.bev.form.TuristaForm;
 import br.com.bev.model.Ingresso;
+import br.com.bev.model.Role;
 import br.com.bev.model.Turista;
 import br.com.bev.repository.IngressoRepository;
 import br.com.bev.repository.TuristaRepository;

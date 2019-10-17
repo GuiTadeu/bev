@@ -28,6 +28,6 @@ public class OrganizadorCadastroForm {
     private String fotoPerfil;
 
     public Organizador toOrganizador(){
-        return new Organizador(nome, cpf, email, new BCryptPasswordEncoder().encode(senha), fotoPerfil);
+        return new Organizador(nome, cpf, email, new BCryptPasswordEncoder().encode(senha), fotoPerfil, Role.ROLE_ORGANIZADOR);
     }
 }

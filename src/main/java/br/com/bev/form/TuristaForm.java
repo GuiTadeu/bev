@@ -31,8 +31,4 @@ public class TuristaForm {
         this.cpf = turista.getCpf();
         this.fotoPerfil = turista.getFotoPerfil();
     }
-
-    public Turista toTurista() {
-        return new Turista(nome, email, cpf, fotoPerfil);
-    }
 }

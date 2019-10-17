@@ -11,24 +11,17 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("TURISTA")
 public class Turista extends Usuario {
 
     @ManyToMany(mappedBy = "turistas", cascade = CascadeType.ALL)
     private List<Viagem> viagens;
 
-    public Turista(String nome, String email, String senha, String cpf, String fotoPerfil) {
+    public Turista(String nome, String email, String senha, String cpf, String fotoPerfil, Role role) {
         setNome(nome);
         setEmail(email);
         setCpf(cpf);
         setSenha(senha);
         setFotoPerfil(fotoPerfil);
-    }
-
-    public Turista(String nome, String email, String cpf, String fotoPerfil) {
-        setNome(nome);
-        setEmail(email);
-        setCpf(cpf);
-        setFotoPerfil(fotoPerfil);
+        setRole(role);
     }
 }

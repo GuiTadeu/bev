@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-@ApiIgnore
 @RestController
 @RequestMapping("/test")
 public class AuthorizationTests {
