@@ -38,16 +38,10 @@ public class Usuario implements UserDetails {
     private String fotoPerfil;
 
     @ManyToOne
+    @JoinColumn(name="AUTHORITY")
     private Role role;
 
-
     public Usuario() {
-    }
-
-    public Usuario(String nome, String email, String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
     }
 
     @Override
