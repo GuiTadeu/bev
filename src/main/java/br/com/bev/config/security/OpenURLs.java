@@ -20,6 +20,6 @@ public class OpenURLs {
 
             "/token/getUser",
 
-            "/h2-console/*"
+            "/h2-console/*",
     };
 }
