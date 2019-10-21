@@ -19,6 +19,8 @@ public class OpenURLs {
             "/viagem/retrieve",
             "/viagem/{*}",
 
-            "/token/getUser",
+            "/embarque/viagem/{*}/turista/{*}",
+
+            "/token/getUser"
     };
 }
