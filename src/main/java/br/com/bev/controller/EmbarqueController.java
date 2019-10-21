@@ -9,10 +9,12 @@ import br.com.bev.repository.EmbarqueRepository;
 import br.com.bev.repository.IngressoRepository;
 import br.com.bev.repository.TuristaRepository;
 import br.com.bev.repository.ViagemRepository;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -33,7 +35,6 @@ public class EmbarqueController {
     IngressoRepository ingressoRepository;
 
     @AllowTurista
-    @CrossOrigin
     @PostMapping("viagem/{idViagem}/turista/{idTurista}")
     public ResponseEntity<Embarque> embarcarTurista(@PathVariable Long idViagem, @PathVariable Long idTurista){
         Optional<Viagem> viagemOptional = viagemRepository.findById(idViagem);

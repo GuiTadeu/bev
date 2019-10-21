@@ -5,7 +5,6 @@ import br.com.bev.form.IngressoForm;
 import br.com.bev.form.TuristaCadastroForm;
 import br.com.bev.form.TuristaForm;
 import br.com.bev.model.Ingresso;
-import br.com.bev.model.Role;
 import br.com.bev.model.Turista;
 import br.com.bev.repository.IngressoRepository;
 import br.com.bev.repository.TuristaRepository;
@@ -48,7 +47,6 @@ public class TuristaController {
     }
 
     @AllowTurista
-    @CrossOrigin
     @GetMapping("{id}/ingressos")
     public ResponseEntity<List<IngressoForm>> ingressos(@PathVariable Long id){
         Optional<Turista> turistaOptional = turistaRepository.findById(id);

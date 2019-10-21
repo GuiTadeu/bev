@@ -13,6 +13,7 @@ public class OpenURLs {
 
             "/turista/cadastrar",
             "/turista/{*}",
+            "/turista/{*}/ingressos",
 
             "/viagem/cadastrar",
             "/viagem/retrieve",
