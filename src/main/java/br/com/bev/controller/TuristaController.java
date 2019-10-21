@@ -48,6 +48,7 @@ public class TuristaController {
     }
 
     @AllowTurista
+    @CrossOrigin
     @GetMapping("{id}/ingressos")
     public ResponseEntity<List<IngressoForm>> ingressos(@PathVariable Long id){
         Optional<Turista> turistaOptional = turistaRepository.findById(id);
